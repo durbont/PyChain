@@ -1,6 +1,6 @@
 # PyChain
 
-PyChain uses 5 Classes:
+PyChain uses 6 Classes:
 
 Chain: contains Block objects in a hash map
 
