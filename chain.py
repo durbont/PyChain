@@ -5,12 +5,28 @@
 ### * Designed with some artistic license * ###
 
 ##GENERAL OUTLINE##
-#    A Market of Individuals connect to the Chain, which acts as a
+#    A Market of Individuals connects to the Chain, which acts as a
 # hash table of Blocks. When users make an Exchange in the market,
 # that Exchange is added to the current Block. When the Block reaches
 # capacity, a new block is made and is added to the Chain.
 # P2P Verification: 3 randomly selected miners verify the sender
-# before a transaction can be completed. 
+# before a transaction can be completed.
+#
+#
+#  ##############  Market access ############
+#    BlockChain  <--------------    Market
+#  ##############                ############
+#        ||                       ||      ||
+#        ||                       ||      ||
+#        \/                       \/      \/ 
+#     #####   #####        Individuals    Miners
+# ..+ Block + Block+..          |           | 
+#     #####   #####             |    Verify |
+#               ||              |<----------+
+#               \/              |
+#           #Exchanges#<--------+
+#
+
 
 import datetime #for hashing
 import hashlib
