@@ -1,10 +1,15 @@
 # PyChain
 
 PyChain uses 5 Classes:
+
 Chain: contains Block objects in a hash map
+
 Block: contains Exchange objects in a hash map
+
 Exchange: contains information on the two users, and other exchange details
+
 Individual: contains user account information
+
 Market: contains users, some blockchain information -> facilitates transactions
 
 #How to Use
