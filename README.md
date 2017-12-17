@@ -9,4 +9,5 @@ Market: contains users, some blockchain information -> facilitates transactions
 
 #How to Use
 
-In build_sample_market, create an origin block, an initial chain that takes the origin block, and a market, which takes both. Create at least 3 individuals, and use the market transaction function to facilitate trades between individuals.
+In build_sample_market, create an origin block, an initial chain that takes the origin block, and a market, which takes both. 
+Create at least 3 individuals, and use the market transaction function to facilitate trades between individuals.
