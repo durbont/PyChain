@@ -33,7 +33,7 @@ import hashlib
 import random
 import time #For displaying output sequentially
 import copy #So miners have uncorruptible version of blockchain
-
+            #Also used for keeping safe balance values
 
 class Chain:
     #Main class, holds Block objects
@@ -120,11 +120,13 @@ class Market:
         self.__miners = {}
         self._miner_count = 0
         self.__users = {}
+        self.__balances = {}
         self.__chain = blockchain
         self.__current_block = block #Create a new block
 
     def add_user(self, key, individual):
         self.__users[key] = individual
+        self.__balances[key] = individual._balance
 
     def add_miner(self, miner):
         self.__miners[miner._index] = miner
@@ -168,8 +170,9 @@ class Market:
         sender_object = self.__users[sender]
         receiver_object = self.__users[receiver]
 
-        #Edge cases
-        if (self.__users[sender]._balance < amount or amount < 0):
+        #Check for balance tampering or insufficient funds
+        if (self.__users[sender]._balance < amount or amount < 0 or
+            self.__users[sender]._balance != self.__balances[sender]):
             print("Insufficient Funds")
             return
 
@@ -183,8 +186,11 @@ class Market:
                 and self.__miners[m2].verify(sender_hist)
                 and self.__miners[m3].verify(sender_hist)):
 
+                #Change balance for individuals and market records
                 sender_object._balance -= amount
+                self.__balances[sender] -= amount
                 receiver_object._balance += amount
+                self.__balances[receiver] += amount
 
                 #Take care of full blocks, and transfer balances
                 self.add_exchange(sender, receiver, amount)
@@ -262,7 +268,7 @@ def build_sample_market():
     #try revising someones history
     choice = random.choice(list(inds[0]._history.keys()))
     inds[0]._history[choice]._amount += 500
-
+    
     m.transaction(inds[0]._public_key, inds[1]._public_key, 5)
 
     for i in inds:
