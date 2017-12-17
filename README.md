@@ -14,7 +14,11 @@ Miner: used to verify transactions, keep separate, more secure copies of the blo
 
 Market: contains users, some blockchain information -> facilitates transactions
 
-#How to Use
+# How to Use
 
 In build_sample_market, create an origin block, an initial chain that takes the origin block, and a market, which takes both. 
 Create individuals, at least three miners, and use the market transaction function to facilitate trades between individuals.
+
+# Details
+
+This implementation of a blockchain isn't truly decentralized (yet).
